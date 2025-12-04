@@ -14,6 +14,7 @@ const filteredMembers = computed(() => {
 
 <template>
   <div>
+    <!-- Settings members page -->
     <UPageCard
       title="Members"
       description="Invite new members by email address."
@@ -39,7 +40,8 @@ const filteredMembers = computed(() => {
         />
       </template>
 
-      <SettingsMembersList :members="filteredMembers" />
+      <!-- Dashboard settings component with updated name -->
+      <DashboardSettingsMembersList :members="filteredMembers" />
     </UPageCard>
   </div>
 </template>
