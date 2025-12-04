@@ -6,7 +6,7 @@ const color = computed(() => colorMode.value === 'dark' ? '#1b1718' : 'white')
 useHead({
   meta: [
     { charset: 'utf-8' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=0.8' },
     { key: 'theme-color', name: 'theme-color', content: color }
   ],
   link: [
@@ -17,7 +17,7 @@ useHead({
   }
 })
 
-const title = 'Nuxt Dashboard Template'
+const title = 'Well Labs'
 const description = 'A professional dashboard template built with Nuxt UI, featuring multiple pages, data visualization, and comprehensive management capabilities for creating powerful admin interfaces.'
 
 useSeoMeta({

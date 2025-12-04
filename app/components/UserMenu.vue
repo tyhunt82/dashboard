@@ -12,10 +12,10 @@ const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 
 const user = ref({
-  name: 'Benjamin Canac',
+  name: 'Tyler Hunt',
   avatar: {
     src: 'https://github.com/benjamincanac.png',
-    alt: 'Benjamin Canac'
+    alt: 'Tyler Hunt'
   }
 })
 
@@ -139,11 +139,6 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   label: 'Documentation',
   icon: 'i-lucide-book-open',
   to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-  target: '_blank'
-}, {
-  label: 'GitHub repository',
-  icon: 'i-simple-icons-github',
-  to: 'https://github.com/nuxt-ui-templates/dashboard',
   target: '_blank'
 }, {
   label: 'Log out',

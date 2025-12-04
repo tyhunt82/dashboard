@@ -24,7 +24,7 @@ export interface Mail {
 export interface Member {
   name: string
   username: string
-  role: 'member' | 'owner'
+  role: 'member' | 'owner' | 'admin' | 'superadmin'
   avatar: AvatarProps
 }
 

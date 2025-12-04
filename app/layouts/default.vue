@@ -118,7 +118,7 @@ onMounted(async () => {
   <UDashboardGroup unit="rem">
     <UDashboardSidebar
       id="default"
-      v-model:open="open"
+      v-model:open="collapsed"
       collapsible
       resizable
       class="bg-elevated/25"
