@@ -1,11 +1,101 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'landing'
+})
+
+const { data: page } = await useAsyncData('index', () => queryCollection('index').first())
+
+const title = page.value?.seo?.title || page.value?.title || 'Well Labs'
+const description = page.value?.seo?.description || page.value?.description || ''
+
+useSeoMeta({
+  titleTemplate: 'Well Labs',
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description
+})
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen">
-    <h1 class="text-4xl font-bold mb-8">Welcome to Well Labs</h1>
-    <UButton to="/dashboard" size="xl">
-      Go to Dashboard
-    </UButton>
+  <div v-if="page">
+    <UPageHero
+      :title="page.title"
+      :description="page.description"
+      :links="page.hero?.links || []"
+    >
+      <template #top>
+        <LandingPageHeroBackground />
+      </template>
+
+      <template #title>
+        <MDC
+          :value="page.title"
+          unwrap="p"
+        />
+      </template>
+
+      <LandingPagePromotionalVideo />
+    </UPageHero>
+
+    <UPageSection
+      v-for="(section, index) in page.sections"
+      :key="index"
+      :title="section.title"
+      :description="section.description"
+      :orientation="section.orientation"
+      :reverse="section.reverse"
+      :features="section.features"
+    >
+      <LandingPageImagePlaceholder />
+    </UPageSection>
+
+    <UPageSection
+      :title="page.features.title"
+      :description="page.features.description"
+    >
+      <UPageGrid>
+        <UPageCard
+          v-for="(item, index) in page.features.items"
+          :key="index"
+          v-bind="item"
+          spotlight
+        />
+      </UPageGrid>
+    </UPageSection>
+
+    <UPageSection
+      id="testimonials"
+      :headline="page.testimonials.headline"
+      :title="page.testimonials.title"
+      :description="page.testimonials.description"
+    >
+      <UPageColumns class="xl:columns-4">
+        <UPageCard
+          v-for="(testimonial, index) in page.testimonials.items"
+          :key="index"
+          variant="subtle"
+          :description="testimonial.quote"
+          :ui="{ description: 'before:content-[open-quote] after:content-[close-quote]' }"
+        >
+          <template #footer>
+            <UUser
+              v-bind="testimonial.user"
+              size="lg"
+            />
+          </template>
+        </UPageCard>
+      </UPageColumns>
+    </UPageSection>
+
+    <USeparator />
+
+    <UPageCTA
+      v-bind="page.cta"
+      variant="naked"
+      class="overflow-hidden"
+    >
+      <LazyLandingPageStarsBg />
+    </UPageCTA>
   </div>
 </template>
